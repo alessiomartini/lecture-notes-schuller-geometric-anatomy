@@ -3,7 +3,7 @@
 ## Setup
 - [x] Repo, preamble, build, transcripts tool (from Brunton/Mehrling)
 - [x] Pilot: lecture 1 written and compiled
-- [ ] Feedback di Alessio sul pilota (lezioni 1-2)
+- [x] Feedback di Alessio sul pilota: capitolo 1 approvato come modello per tutti (2026-11-21)
 
 ## Lezioni
 - [x] L01 Introduction; logic of propositions and predicates
