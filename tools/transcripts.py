@@ -15,6 +15,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 MAT = ROOT / 'materials'
 LINE_SECONDS = 20
+# own downloads first, then the shared download of the inventory repo (lecture-notes-schuller-courses)
+RAWS = [MAT / 'transcripts/raw', ROOT.parent / 'lecture-notes-schuller-courses/materials/raw/C1']
 
 
 def mmss(s):
@@ -58,12 +60,16 @@ with open(ROOT / 'lecture-notes/videos.tex', 'w', encoding='utf-8') as f:
 done = []
 for r in rows:
     n, vid = int(r['n']), r['youtube']
-    raw = MAT / 'transcripts/raw'
-    src = next(iter(sorted(raw.glob(f'{n:03d}-{vid}.en-orig.json3'))), None)
-    words = words_json3(src) if src else None
-    if not src:
+    src = words = None
+    for raw in RAWS:
+        src = next(iter(sorted(raw.glob(f'{n:03d}-{vid}.en-orig.json3'))), None)
+        if src:
+            words = words_json3(src)
+            break
         src = next(iter(raw.glob(f'{n:03d}-{vid}.whisper.txt')), None)
-        words = words_whisper(src) if src else None
+        if src:
+            words = words_whisper(src)
+            break
     if not src:
         continue
     out = MAT / f'transcripts/C{n:02d}-V01.txt'
