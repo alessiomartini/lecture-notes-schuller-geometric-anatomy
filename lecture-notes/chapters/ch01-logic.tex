@@ -1,0 +1,696 @@
+% !TEX root = ../main.tex
+\chapter{Introduction; logic of propositions and predicates}\label{ch:logic}
+\begin{paracol}{2}
+
+\begin{sources}
+\begin{tabularx}{\linewidth}{@{}l l L@{}}
+\toprule
+\textbf{Video} & \textbf{Length} & \textbf{Content}\\
+\midrule
+\seg{1}{1}{Lecture 1: Introduction / Logic of propositions and predicates} & 1:40:48 & Aim and structure of the
+course; propositional logic (unary and binary operators, implication, proof by contradiction, NAND);
+predicate logic (quantifiers, order of quantification); axiomatic systems, proofs, consistency;
+consistency of propositional logic; G\"odel's incompleteness theorem (statement and idea); outlook on
+axiomatic set theory.\\
+\bottomrule
+\end{tabularx}
+
+\smallskip
+\textbf{Transcript} \file{materials/transcripts/C01-V01.txt} (YouTube automatic captions).
+Recorded at FAU Erlangen, winter semester 2013/14.
+\end{sources}
+
+\begin{reading}[Where this lecture sits in the other notes]
+None of the other Schuller courses starts from logic: \emph{Gravity and Light} (Lecture~1) and
+\emph{Theoretische Mechanik} (Lecture~2) start directly from topology, which here is Lecture~4.
+The overview of the ``building'' in \cref{sec:lo-structure} is the same picture as the bird's-eye view of
+\emph{Theoretische Mechanik}, Lecture~1. Links to the chapters will be added when those notes exist.
+\end{reading}
+
+% ==================================================================
+\section{What the course is for}\label{sec:lo-aims}
+
+Theoretical physics casts our concepts about the real world into rigorous mathematical form, ``for better or
+worse''; it does so not for its own sake, but to explore fully what those concepts imply \ts{1}{1}{0:07}.
+Schuller puts the spirit of the subject in the words of Wittgenstein: \emph{what we cannot speak about clearly,
+we must pass over in silence} \ts{1}{1}{0:51}. If a concept about the world cannot be put into precise
+mathematical form, this usually shows that some aspect of the concept has not been understood.
+\begin{coursenote}[The two Wittgenstein quotes]
+The first is the last proposition (7) of the \emph{Tractatus Logico-Philosophicus} (1921): ``Wovon man nicht
+sprechen kann, dar\"uber muss man schweigen.'' The second is close to Tractatus 5.43, where it is said of the
+propositions of \emph{logic}: ``Alle S\"atze der Logik sagen aber dasselbe. N\"amlich nichts.''
+\end{coursenote}
+
+Mathematics, however, is \emph{just a language}. To extract physical conclusions from a mathematical
+formulation one must interpret it, and that is not the task of mathematics but of physicists, which is where
+it becomes difficult again \ts{1}{1}{1:32}. Again with Wittgenstein: the theorems of mathematics all say the
+same thing, namely nothing \ts{1}{1}{1:52}. This does not mean that mathematics is useless. A theorem of the
+form ``$A$ if and only if $B$'' says nothing that $A$ did not already say: logically it is a tautology. But
+psychologically, for our understanding of $A$, a reformulation in terms of $B$ may be very useful
+\ts{1}{1}{2:13}.
+
+With this understanding, the idea of the course is to provide the proper language for theoretical physics
+\ts{1}{1}{2:56}.
+
+\begin{intuition}[The aim in one line]
+Provide proper mathematical language for classical mechanics, electromagnetism, quantum mechanics and
+statistical physics \ts{1}{1}{3:19}.
+\end{intuition}
+
+These are the subjects of the modules TP1 to TP4 at Erlangen \ts{1}{1}{4:04}. The course will not revise all
+the mathematics they need; it develops the mathematics from a higher point of view, now that some knowledge
+of these subjects can be assumed. So far they have been studied with a fair amount of \emph{analysis}, of
+\emph{algebra} (mostly linear, sometimes non-linear) and of \emph{geometry} in one form or another
+\ts{1}{1}{4:25}: classical mechanics and electromagnetism appeal to geometric intuition to set up and solve a
+problem; quantum mechanics, in its modern form, is done with linear algebra; statistical physics uses some
+geometry, maybe without noticing, when it looks at convex cones of states \ts{1}{1}{5:06}.
+
+Drawing a circle around each of the three fields, the physical theories sit roughly in the intersections
+\ts{1}{1}{5:26}, as in \cref{fig:lo-venn}. Classical mechanics and electrodynamics use analysis and geometry,
+and so does general relativity; quantum mechanics lies in the intersection of analysis and algebra, usually
+called \emph{functional analysis}; statistical physics, ``to do it justice'', lies more or less between algebra
+and geometry \ts{1}{1}{5:51}. This is not a pure picture, only where the intersections come into play. In the
+middle, where all three intersect, sits \emph{differential geometry}, and it is mainly differential geometry
+that the course is about \ts{1}{1}{6:33}.
+
+\begin{nfigure}
+\begin{tikzpicture}[scale=0.95]
+  \draw[thick,defcol] (0,0) circle (2.1) node[above left=1.05cm and 0.6cm] {\textbf{Analysis}};
+  \draw[thick,thmcol] (2.6,0) circle (2.1) node[above right=1.05cm and 0.6cm] {\textbf{Algebra}};
+  \draw[thick,intcol] (1.3,-2.2) circle (2.1) node[below=1.35cm] {\textbf{Geometry}};
+  \node[font=\footnotesize,align=center] at (1.3,1.25) {QM\\(functional\\analysis)};
+  \node[font=\footnotesize,align=center] at (-0.45,-1.45) {CM, EM,\\GR};
+  \node[font=\footnotesize,align=center] at (3.05,-1.45) {statistical\\physics};
+  \node[font=\footnotesize\bfseries,align=center] at (1.3,-0.65) {differential\\geometry};
+\end{tikzpicture}
+\caption{Where the physical theories sit among the three mathematical fields \ts{1}{1}{5:51}. The course is
+about the centre.}\label{fig:lo-venn}
+\end{nfigure}
+
+% ==================================================================
+\section{The structure of the course: a building}\label{sec:lo-structure}
+
+The development of differential geometry starts with sets \ts{1}{1}{7:17}. Every space of physics (the
+configuration space or the phase space of classical mechanics, the space in which electromagnetism works, the
+physical space over which the Hilbert space of quantum mechanics is built) is, at its coarsest level, a set of
+points \ts{1}{1}{7:38}. But what precisely is a set? Saying ``a collection of elements'' only raises the
+questions of what a collection is and what elements are. There is a fundamental problem: if we start writing a
+book on mathematics whose pages are still empty, what can the first definition be? A definition needs notions
+we already have \ts{1}{1}{7:58}. The way out is to start \emph{axiomatically}; but then, in what language are
+the axioms written? So below set theory there is one more building block: \emph{logic}, propositional and
+predicate logic, which defines our language \ts{1}{1}{8:40}. The building then goes up as follows
+(\cref{fig:lo-building}).
+
+\begin{enumerate}
+  \item \textbf{Logic and axiomatic set theory}: the language and the axioms for sets \ts{1}{1}{9:02}.
+  \item \textbf{Topology.} The four subjects need a notion of \emph{continuity}: famously, particles do not
+        jump; a trajectory does not stop somewhere and start again somewhere else. Continuity is obtained by
+        distinguishing certain subsets of the basic set, which leads to topological spaces \ts{1}{1}{9:23}.
+  \item \textbf{Topological manifolds.} There are so many topological spaces that they cannot even be
+        classified, so we restrict to those that are immediately interesting for physics (topologists may
+        disagree that they are the only interesting ones): spaces that locally around each point look like
+        some $\R^d$ \ts{1}{1}{10:04}.
+  \item \textbf{Differentiable manifolds.} Classical physics needs derivatives, for instance the velocity of a
+        curve, which cannot be defined on a topological manifold. Differentiable manifolds are ``an entirely
+        new beast'' and need the technology of \emph{charts}, which makes contact with the formalism of all
+        the standard courses: these have all been formulated in charts so far \ts{1}{1}{10:46}.
+  \item \textbf{Bundles}: to each point of a manifold one attaches another manifold, for instance a vector
+        space at each point (the tangent space) \ts{1}{1}{12:52}.
+  \item \textbf{Geometry}: tensor fields on these structures \ts{1}{1}{14:58}.
+  \item \textbf{Physics} on top: classical mechanics, electromagnetism, quantum mechanics, statistical physics,
+        special and general relativity \ts{1}{1}{16:02}.
+\end{enumerate}
+
+\begin{intuition}[Charts and atlases]
+A chart is what a sailor uses: travelling across the globe, you take out the atlas, turn to the chart of the
+place where you are and navigate in it. The chart must be a one-to-one picture of the world locally. If you
+move so that you would leave the page, you turn to another page that slightly overlaps with the first and
+navigate on \ts{1}{1}{11:30}. Looking for overlapping charts and understanding how the overlaps work is the
+whole philosophy of manifolds, and of differentiable manifolds in particular: the charts are pieces of
+$\R^d$, where differentiation is understood, and the notion of differentiation is lifted from the charts to
+the manifold \ts{1}{1}{12:11}.
+\end{intuition}
+
+Bundles are a very important concept in differential geometry, and much of modern physics can be cast in
+their language: particle physics, gravity, and certainly quantum mechanics \ts{1}{1}{13:14}. Two warnings come
+with them \ts{1}{1}{13:35}:
+\begin{itemize}
+  \item there is \emph{no such thing as a position vector}, however often it is repeated: a position vector
+        is just a collection of coordinates, and these do not constitute a vector;
+  \item there is \emph{no such thing as a wave function} in quantum mechanics: it is not a function at all,
+        but a section of a complex line bundle over physical space \ts{1}{1}{14:16}.
+\end{itemize}
+One gets away with both notions as long as one does not look too closely; then they fail. ``You cannot
+understand this now, but you will at the end of the course'' \ts{1}{1}{14:37}.
+
+The geometry comes as tensor fields on these structures \ts{1}{1}{14:58}: a \emph{symplectic} geometry, the
+geometry of the phase space of classical mechanics, and in fact of virtually all dynamical systems of interest
+\ts{1}{1}{15:19}; a \emph{metric} geometry, needed to some extent in electromagnetism (there, really, only a
+volume form is needed), and certainly in special and general relativity, which need a so-called
+\emph{Lorentzian} metric \ts{1}{1}{15:41}. Up to the geometry everything is ``physical mathematics''; above it
+is physics, and all of it can be properly understood by mastering this mathematics \ts{1}{1}{16:23}. The
+course develops the mathematics and then shows, mainly by examples, how the insights play out at the level of
+physics \ts{1}{1}{16:43}. The picture should not be taken too seriously (bundles, for instance, sometimes come
+before or alongside differentiable manifolds) \ts{1}{1}{14:58}.
+
+\begin{nfigure}
+\begin{tikzpicture}[every node/.style={draw,minimum width=9.5cm,minimum height=0.62cm,font=\small,align=center}]
+  \node[fill=thmcol!10] (ph) at (0,6.2) {\textbf{Physics}: CM, EM, QM, statistical physics, SR, GR};
+  \node[fill=intcol!10] (ge) at (0,5.3) {\textbf{Geometry}: tensor fields (symplectic, metric, Lorentzian, volume form)};
+  \node[fill=defcol!8]  (bu) at (0,4.4) {\textbf{Bundles} (no position vectors, no wave functions)};
+  \node[fill=defcol!8]  (dm) at (0,3.5) {\textbf{Differentiable manifolds} (charts, atlases)};
+  \node[fill=defcol!8]  (tm) at (0,2.6) {\textbf{Topological manifolds} (locally $\R^d$)};
+  \node[fill=defcol!8]  (to) at (0,1.7) {\textbf{Topological spaces} (continuity)};
+  \node[fill=srccol!10] (se) at (0,0.8) {\textbf{Axiomatic set theory}};
+  \node[fill=srccol!20] (lo) at (0,-0.1) {\textbf{Logic}: propositional and predicate logic};
+\end{tikzpicture}
+\caption{The building of the course, from the bottom up \ts{1}{1}{8:40}. Up to geometry it is mathematics;
+the top floor is physics.}\label{fig:lo-building}
+\end{nfigure}
+
+% ==================================================================
+\section{Propositional logic}\label{sec:lo-prop}
+
+Logic is treated as the first part of Chapter~1, \emph{Axiomatic set theory}, because it is the language
+in which set theory will be written \ts{1}{1}{17:39}.
+
+\begin{definition}[New concepts: proposition]\label{def:lo-proposition}
+A \textbf{proposition} $p$ is a variable that can take the values \emph{true} or \emph{false}, and no others
+\ts{1}{1}{18:32}.
+\end{definition}
+The name comes from the Latin \emph{propositio}, ``a setting forth'', a statement put forward.
+
+That is all a proposition is for propositional logic. In particular, it is not its task to decide whether a
+complex statement such as ``there is extraterrestrial life'' is true or not: propositional logic starts from
+complete propositions and only assumes that each is true or false \ts{1}{1}{19:14}. Nor is it its task to
+decide whether a sentence such as ``in winter it is colder than outside'' is a proposition at all (this one does
+not seem particularly reasonable) \ts{1}{1}{19:56}. Propositions are its atomic, elementary notion
+\ts{1}{1}{20:16}.
+
+New propositions are built from given ones by \textbf{logical operators} \ts{1}{1}{20:38}.
+
+\paragraph{Unary operators.} A unary operator takes one proposition $p$ and makes a new proposition from it
+\ts{1}{1}{21:05}. Since $p$ can only be true or false, there are exactly four of them \ts{1}{1}{21:47}: the
+negation $\neg p$, the identity $\mathrm{id}\,p$, the tautology $\top p$ (always true, whatever $p$ is) and the
+contradiction $\bot p$ (always false) \ts{1}{1}{22:07}:
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{c|cccc}
+$p$ & $\neg p$ & $\mathrm{id}\,p$ & $\top p$ & $\bot p$\\\hline
+T & F & T & T & F\\
+F & T & F & T & F
+\end{tabular}
+\end{center}
+These are all the possibilities \ts{1}{1}{22:28}.
+
+\paragraph{Binary operators.} A binary operator takes two given propositions $p,q$; the pair can take the
+four values TT, TF, FT, FF \ts{1}{1}{22:48}. For each of the four rows we may choose T or F, so there are
+$2^4=16$ binary operators \ts{1}{1}{23:29}. Some of them:
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{cc|ccccc}
+$p$ & $q$ & $p\wedge q$ & $p\vee q$ & $p\veebar q$ & $p\Rightarrow q$ & $p\Leftrightarrow q$\\\hline
+T & T & T & T & F & T & T\\
+T & F & F & T & T & F & F\\
+F & T & F & T & T & T & F\\
+F & F & F & F & F & T & T
+\end{tabular}
+\end{center}
+with $\wedge$ ``and'' \ts{1}{1}{23:09}, $\vee$ ``or'' (inclusive) and $\veebar$ the exclusive or
+\ts{1}{1}{25:33}.
+
+\begin{coursenote}[Why not ``maps'' from $\{T,F\}\times\{T,F\}$?]
+Asked whether a binary operator is a map from the Cartesian product of $\{\text{true},\text{false}\}$ with
+itself to $\{\text{true},\text{false}\}$, Schuller answers that this is the idea, but he cannot say it that way:
+we do not yet know what a set or a Cartesian product is \ts{1}{1}{24:10}. Even more abstractly, one can
+write down \emph{deduction rules} and never write a table. He does not, because for standard logic it would
+serve no purpose \ts{1}{1}{24:31}. For non-standard logics, such as intuitionist logic, one removes some
+deduction rules and gets a logic that can no longer be expressed by tables: ``very esoteric'', very
+interesting, but every course has to define its bottom line, and this one presents tables instead of
+deduction rules and axioms, which is sufficient for what follows \ts{1}{1}{24:52}.
+\end{coursenote}
+
+\begin{history}[``Or'': inclusive or exclusive?]
+As told in class \ts{1}{1}{25:54}: in the Middle Ages people discussed whether the ``or'' in some sentence meant
+the inclusive or the exclusive one, and appealed to the Bible to see how God used it. Around the turn of the
+20th century Frege, Wittgenstein and others said: it is just a table, a definition; there are 16 binary
+operators, each of which may or may not deserve a name.\par
+\smallskip
+\emph{References.} The medieval anecdote is reported as said in class (not checked). Truth tables in their
+modern form: L.~Wittgenstein, \emph{Tractatus Logico-Philosophicus} (1921), 4.31 and 5.101; E.~L.~Post,
+``Introduction to a general theory of elementary propositions'', \emph{Amer.\ J.\ Math.} 43 (1921) 163--185.
+G.~Frege, \emph{Begriffsschrift} (1879).
+\end{history}
+
+This is all ``child's play'', but one binary operator is sometimes ill understood: the \textbf{implication}
+$\Rightarrow$ \ts{1}{1}{26:35}. From school we use the arrow to mean ``I wrote down something true, did something
+valid, and arrived here''. But the implication is a binary operator like $\wedge$: it takes two propositions
+and makes one new proposition, $p\Rightarrow q$, which as a whole is true or false \ts{1}{1}{26:57}. Its table
+is the column above: from true follows true, true; from true follows false, false (``you don't pass the
+test''); from false follows true, true; and from false follows false, also true \ts{1}{1}{27:18}. This is the
+definition \ts{1}{1}{28:01}.
+
+\begin{definition}[New concepts: ex falso quodlibet]\label{def:lo-exfalso}
+The principle that from a false assumption anything can be concluded, the implication as a whole being true,
+is called \textbf{ex falso quodlibet} (Latin: ``from the false, whatever you like'') \ts{1}{1}{28:22}.
+\end{definition}
+
+The first two rows are intuitive; why define the last two like this? The answer is hidden in a little
+theorem \ts{1}{1}{28:42}. To state it we need the \textbf{equivalence} $p\Leftrightarrow q$, true when both
+propositions have the same value and false otherwise (table above) \ts{1}{1}{29:05}.
+
+\begin{theorem}[Contraposition]\label{thm:lo-contra}
+$(p\Rightarrow q)\ \Leftrightarrow\ \bigl((\neg q)\Rightarrow(\neg p)\bigr)$ \ts{1}{1}{29:25}.
+\end{theorem}
+\begin{proof}
+Write out the truth table in full \ts{1}{1}{32:10}:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{cc|cc|cc}
+$p$ & $q$ & $\neg p$ & $\neg q$ & $p\Rightarrow q$ & $\neg q\Rightarrow\neg p$\\\hline
+T & T & F & F & T & T\\
+T & F & F & T & F & F\\
+F & T & T & F & T & T\\
+F & F & T & T & T & T
+\end{tabular}
+\end{center}
+The last two columns agree in every row \ts{1}{1}{33:12}, so the equivalence is true whatever $p$ and $q$ are.
+\end{proof}
+Note that putting $\neg$ in front exchanges the order of $p$ and $q$; since binding strengths have not been
+fixed yet, brackets are used \ts{1}{1}{29:46}. Proving such a statement by writing out the truth table is ``the
+first vanilla problem in any exam'' \ts{1}{1}{32:10}.
+
+\begin{corollary}[Proof by contradiction]\label{cor:lo-contradiction}
+Assertions can be proven by way of contradiction \ts{1}{1}{30:06}: to prove that $q$ follows from the true
+assumption $p$, one may equivalently assume that $q$ is false and show that then $p$ cannot be true.
+\end{corollary}
+This is a very elementary principle and a very sharp tool of mathematics \ts{1}{1}{30:48}.
+
+\begin{secondary}[Intuitionist logic]
+If logic is formulated by deduction rules and axioms instead of tables, one can ``surgically'' remove a rule
+so that \cref{thm:lo-contra} no longer holds; the result cannot be written with tables any more, and it gives a
+mathematics in which proofs by contradiction are not allowed \ts{1}{1}{30:48}. In every good mathematics
+department there is one professor who follows this \emph{intuitionist} logic, and ``it's a pain'': everything
+must be proven constructively \ts{1}{1}{31:29}. Some make the point that a constructive result is more
+meaningful, and an even deeper one: that proofs by contradiction cannot be trusted. The course does not go into
+this: its logic allows proofs by contradiction, essentially by the definition of $\Rightarrow$
+\ts{1}{1}{31:49}.
+\end{secondary}
+
+\begin{exercise}[A tautology]\label{ex:lo-taut}
+Write the truth table of $p\vee\neg p$ and of $(p\wedge(p\Rightarrow q))\Rightarrow q$. Which of the two is
+true for every choice of $p,q$?
+\end{exercise}
+
+\begin{remark}[Binding strength]\label{rem:lo-binding}
+We agree on the decreasing binding strength $\neg,\ \wedge,\ \vee,\ \Rightarrow,\ \Leftrightarrow$: $\neg$ binds
+most strongly, $\Leftrightarrow$ least \ts{1}{1}{33:37}. With more symbols the sequence must be extended
+\ts{1}{1}{33:59}.
+\end{remark}
+
+\begin{remark}[Higher-order operators and NAND]\label{rem:lo-nand}
+An operator $\heartsuit(p_1,\dots,p_n)$ that takes $n$ propositions is an \textbf{operator of order $n$}: unary
+operators have order 1, binary ones order 2 \ts{1}{1}{34:41}. All operators of any order can be constructed from
+one single binary operator \ts{1}{1}{35:02}, the \textbf{NAND} operator (``not and''), $p\uparrow q:\Leftrightarrow
+\neg(p\wedge q)$ \ts{1}{1}{35:24}:
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{cc|c}
+$p$ & $q$ & $p\uparrow q$\\\hline
+T&T&F\\ T&F&T\\ F&T&T\\ F&F&T
+\end{tabular}
+\end{center}
+So the binding strengths are not really needed: they are a convenience \ts{1}{1}{36:07}.
+\end{remark}
+
+\begin{exercise}[First steps with NAND]\label{ex:lo-nand}
+Express $\neg p$ and $p\wedge q$ using only $\uparrow$ (``finger practice'', as on the first problem sheet
+\ts{1}{1}{36:27}). The full statement is \cref{ex:lo-nand-full} in the appendix.
+\end{exercise}
+
+Asked again about the equivalence operator: it is true exactly when both propositions take the same value;
+that is its definition \ts{1}{1}{36:48}.
+
+% ==================================================================
+\section{Predicate logic}\label{sec:lo-pred}
+
+\begin{definition}[New concepts: predicate]\label{def:lo-predicate}
+A \textbf{predicate} is, informally, a proposition-valued function of some variable or variables
+\ts{1}{1}{37:38}. For example $P(x)$ is true or false depending on $x$ \ts{1}{1}{37:58}; $Q(x,y)$ is true or false
+depending on the combination of $x$ and $y$ \ts{1}{1}{38:21}.
+\end{definition}
+The name comes from the Latin \emph{praedicare}, ``to proclaim'': what is asserted of a subject.
+
+As propositional logic does not study how complex propositions arise, predicate logic, strictly speaking, does
+not say how predicates are built \ts{1}{1}{38:41}. One could think of $Q(x,y)$ being true if $x>y$ for real
+numbers $x,y$; but constructing such a predicate needs a further language for combining objects $x$ and $y$
+\ts{1}{1}{39:02}. And from which set do $x$ and $y$ come? \emph{No such thing}: what $x$ and $y$ are, where they
+come from and what their nature is, is left entirely open; they are just variables \ts{1}{1}{39:44}. This is
+weird, because since elementary school we have been conditioned always to say which set a variable comes from;
+but it must be left open, because the notion of set is to be defined later \emph{in this language}
+\ts{1}{1}{40:05}.
+
+\begin{coursenote}[Outlook: the element predicate]
+Set theory will introduce a fundamental predicate of two variables, $x\in y$, which for two objects is either
+true or false \ts{1}{1}{40:25}. If $x$ and $y$ are sets, $x\in y$ is a predicate of two variables. This is only
+an outlook: in predicate logic the symbol $\in$ does not exist yet \ts{1}{1}{41:08}. ``It is always important to
+know what a subject is not talking about'': here, how predicates are built \ts{1}{1}{41:28}.
+\end{coursenote}
+
+\paragraph{New predicates from old.} One can build new predicates from given ones \ts{1}{1}{41:48}, for instance
+\[
+  Q(x,y,z):\Leftrightarrow P(x)\wedge R(y,z),
+\]
+where $:\Leftrightarrow$ means ``is defined to be equivalent to'' (the analogue of $:=$): once $x,y,z$ are
+supplied, $P(x)$ and $R(y,z)$ are propositions, which can be joined by $\wedge$ into a new predicate, now of three
+variables \ts{1}{1}{42:10}.
+
+\paragraph{Quantifiers.} More interesting: a predicate of one variable can be converted into a proposition
+\ts{1}{1}{42:51}.
+
+\begin{definition}[New concepts: universal quantifier]\label{def:lo-forall}
+For a predicate $P$ of one variable, $\forall x\colon P(x)$ is the proposition, read ``for all $x$, $P(x)$ is
+true'' \ts{1}{1}{44:14}, which is \emph{defined} to be true if $P(x)$ is true independently of $x$, that is,
+whatever is substituted for $x$ \ts{1}{1}{44:38}.
+\end{definition}
+The whole expression is a proposition constructed from a predicate of one variable \ts{1}{1}{43:54}.
+
+\begin{example}[A ``feel-good'' predicate]
+Predicate logic does not provide specific predicates, but as a ``feel-good example'' (and a feel-good example
+always involves some imprecision) \ts{1}{1}{45:26}: let
+$P(x):\Leftrightarrow (x\text{ is a human being})\Rightarrow(x\text{ has been created})$, which ``includes all
+faiths'' \ts{1}{1}{46:10}. The whole proposition is the implication; where the $x$ come from is hidden in its
+first part. This is certainly always true, so $\forall x\colon P(x)$ is true \ts{1}{1}{46:36}.
+\end{example}
+
+A student asks whether a predicate can be made into a proposition in other ways, ``for some $x$''
+\ts{1}{1}{46:57}. Indeed: the brother of the universal quantifier \ts{1}{1}{47:18}.
+
+\begin{definition}[New concepts: existential quantifier]\label{def:lo-exists}
+$\exists x\colon P(x)$, read ``there exists an $x$ such that $P(x)$'' \ts{1}{1}{47:59}, is the proposition
+\[
+  \exists x\colon P(x)\ :\Leftrightarrow\ \neg\bigl(\forall x\colon \neg P(x)\bigr),
+\]
+the negated universal quantification of the negated predicate \ts{1}{1}{48:19}.
+\end{definition}
+
+\begin{corollary}\label{cor:lo-neg}
+$\forall x\colon\neg P(x)\ \Leftrightarrow\ \neg\bigl(\exists x\colon P(x)\bigr)$ \ts{1}{1}{48:40}: if something is
+not true for any $x$, then it is not true that there exists an $x$ for which it is true \ts{1}{1}{49:03}.
+\end{corollary}
+
+\begin{aside}[The hairdresser's door]
+Simple once written down, but careful with negations and quantifiers \ts{1}{1}{49:28}. On the doors of many
+barber shops it says: ``What hairdressers can do, only hairdressers can do.'' It sounds good, but it means that
+hairdressers can do nothing a non-hairdresser can do: if a non-hairdresser can draw nice pictures, a hairdresser
+cannot \ts{1}{1}{49:48}.
+\end{aside}
+
+\begin{remark}[Quantifying predicates of several variables]\label{rem:lo-free}
+Quantification also applies to predicates of more than one variable \ts{1}{1}{50:30}. $\forall x\colon P(x,y)$ is a
+predicate of the one variable $y$ that was not quantified \ts{1}{1}{51:14}: $x$ is the \textbf{bound} variable,
+$y$, which survives the quantification, the \textbf{free} variable \ts{1}{1}{51:35}. The remaining variable can
+be quantified again \ts{1}{1}{51:56}.
+\end{remark}
+
+\begin{remark}[The order of quantification matters]\label{rem:lo-order}
+In general \ts{1}{1}{52:17}
+\[
+  \forall x\ \exists y\colon P(x,y)\qquad\text{and}\qquad \exists y\ \forall x\colon P(x,y)
+\]
+are different propositions \ts{1}{1}{52:37}. One should therefore seriously avoid, although it is tricky in the
+heat of a calculation, writing the quantifiers \emph{after} the expression (``\dots for all $x,y,z$''): when
+written informally behind, it is unclear where they should be pulled to. Write all quantifiers in front, in
+order \ts{1}{1}{52:58}.
+\end{remark}
+
+\begin{example}[Neutral and inverse elements]
+For the additive neutral element of the real numbers: \emph{there exists} $0\in\R$ such that \emph{for all}
+$x\in\R$, $x+0=x$; the same $0$ works for every $x$ \ts{1}{1}{53:40}. For inverses: \emph{for every} $x$ \emph{there
+exists} a $y$ with $x+y=0$; $y$ may be chosen depending on $x$ \ts{1}{1}{54:01}. (Schuller first stated the
+neutral element the wrong way round, and corrected himself: ``you see, already a mistake again''.)
+\end{example}
+
+\begin{exercise}[Negating quantifiers]\label{ex:lo-negq}
+Using \cref{def:lo-exists}, show that $\neg(\forall x\ \exists y\colon P(x,y))\Leftrightarrow\exists x\ \forall y\colon
+\neg P(x,y)$. Then negate the statement ``every real number has an additive inverse''.
+\end{exercise}
+
+% ==================================================================
+\section{Axiomatic systems and the theory of proofs}\label{sec:lo-proofs}
+
+Proofs are met in physics and, above all, in mathematics lectures; but what \emph{is} a proof
+\ts{1}{1}{55:17}? A way of arguing why something is true given that something else was assumed true; but what are
+the valid rules for writing one down? This can be defined, and there are subtleties which make some proofs
+that are given really non-proofs \ts{1}{1}{55:38}. All of this prepares the axiomatic system of set theory
+\ts{1}{1}{55:58}.
+
+\begin{definition}[New concepts: axiomatic system]\label{def:lo-axsys}
+An \textbf{axiomatic system} is a finite sequence of propositions $a_1,a_2,\dots,a_N$, which are called the
+\textbf{axioms} \ts{1}{1}{56:19}\ts{1}{1}{58:27}.
+\end{definition}
+
+\begin{aside}[Pre-mathematical numbers]
+A smart objection: what do ``finite'' and the numbers $1,2,\dots,N$ mean before sets are defined? One could
+write $a_{/},a_{//},a_{///},\dots$ with strokes instead; logicians call these \emph{pre-mathematical numbers}:
+``it's what you're doing in Bavarian pubs'' (counting beers by strokes on the beer mat) \ts{1}{1}{56:44}.
+\end{aside}
+
+\begin{coursenote}[Disclaimer]
+A mathematical logician in the audience would shout ``this is a little too na\"ive'': the course does not use the
+full formal approach of first-order predicate logic (this already showed in the use of tables) \ts{1}{1}{57:24}.
+It gives the right idea, conceptually exactly what logicians do, without the formal nitty-gritty, which for
+what follows would be fully redundant. It is not what a professional logician would write in a research
+monograph, but nothing of it is wrong \ts{1}{1}{57:46}.
+\end{coursenote}
+
+The idea: first the axioms are given, then a homework problem ``prove $p$ starting from the axioms''
+\ts{1}{1}{59:08}.
+
+\begin{definition}[New concepts: proof]\label{def:lo-proof}
+A \textbf{proof} of a proposition $p$ within an axiomatic system $a_1,\dots,a_N$ is a finite sequence of
+propositions (or propositional schemes) $q_1,\dots,q_M$ (the steps of the proof) \ts{1}{1}{59:30} such that
+$q_M=p$ (the last step is the proposition to be proven) \ts{1}{1}{1:00:15} and, for every $1\le j\le M$, one of the
+following holds \ts{1}{1}{1:02:41}\ts{1}{1}{1:03:03}:
+\begin{itemize}
+  \item[(A)] $q_j$ is a proposition from the list of axioms \ts{1}{1}{1:03:23};
+  \item[(T)] $q_j$ is a tautology \ts{1}{1}{1:03:44};
+  \item[(M)] there exist $1\le m,n<j$ such that $(q_m\wedge q_n)\Rightarrow q_j$ is true \ts{1}{1}{1:05:28}\ts{1}{1}{1:06:10}.
+\end{itemize}
+The letters stand for \emph{axiom}, \emph{tautology} and \emph{modus ponens} \ts{1}{1}{1:05:28}.
+\end{definition}
+So at any step one may write down an axiom (A), a plain tautology (T), or a proposition deduced from two
+\emph{previous} steps (M) \ts{1}{1}{1:07:12}. \emph{Modus ponens} (Latin, ``the mode that affirms'') is a very old
+deduction rule.
+
+\begin{definition}[New concepts: tautology]\label{def:lo-tautology}
+A \textbf{tautology} is a proposition that is true independently of the elementary propositions it is made of
+\ts{1}{1}{1:04:05}; for example $p\vee\neg p$. Generically the value of an expression containing $p$ depends on $p$,
+but this particular combination is always true, as the table shows \ts{1}{1}{1:04:25}.
+\end{definition}
+
+\begin{remark}[Propositional schemes]
+One single axiom can have the form ``$\forall x\colon P(x)$''. It is just one proposition, but one may then use
+the individual instances $P(x)$, which are true in maybe infinitely many cases; this is called a
+\textbf{propositional scheme}. Still, the steps of a proof must be \emph{finitely many}, and this is very
+important \ts{1}{1}{1:00:38}\ts{1}{1}{1:01:18}.
+\end{remark}
+
+\begin{aside}[``This proof is not finite'']
+In his first semester Schuller was, as he says today, fortunate that his analysis professor was an intuitionist:
+no proofs by contradiction, and he was sometimes really mad at textbook proofs of analysis theorems, often saying
+``this proof is not finite'' [?: the transcript has ``not cyanide'', probably German \emph{nicht finit}]. The
+students did not understand what he meant; with the formal theory of proofs, where a proof is a finite sequence
+of propositions, they did \ts{1}{1}{1:01:39}.
+\end{aside}
+
+\paragraph{Is rule (M) needed?} A student asks whether (M) does not already follow from (A) and (T)
+\ts{1}{1}{1:07:54}. It is needed, ``definitely, seriously, desperately, fully'': the intuition ``if this is true,
+then I can do this'' is kindergarten intuition; $\Rightarrow$ is just a binary operator, with no built-in
+direction \ts{1}{1}{1:08:15}. There is not yet enough technology for a meaningful example, but the course will
+write out \emph{one} proof in full according to this scheme: the uniqueness of the empty set. An axiom will
+stipulate that there exists an empty set; showing that there is only one is intuitively clear, but written out in
+full it takes about 16 lines \ts{1}{1}{1:08:36}\ts{1}{1}{1:08:56}.
+
+\begin{intuition}[Machine code and C++]
+All other proofs are given the usual way, by quick arguments. Not even the most celebrated theorems in the best
+journals are proven in the formal fashion, which would take ``millions and billions'' of lines for comparatively
+simple statements \ts{1}{1}{1:09:37}. The formal proof is like machine code, zeros and ones; the proofs we write
+are in a higher language, like C++ \ts{1}{1}{1:09:58}. The understanding is that a written proof is a proof only if
+fellow mathematicians agree that it could in principle be broken down into a proof of the formal type
+\ts{1}{1}{1:10:18}. If somebody suspects that it would not (for instance, not into finitely many steps), they object;
+and as long as somebody says ``I'm not convinced'', the proof has to be broken down further and further
+\ts{1}{1}{1:10:39}. ``Don't tell anyone: you can obstruct any lecture in mathematics'' this way \ts{1}{1}{1:10:59}.
+\end{intuition}
+
+Why may (M) use any two previous steps, even with others in between, but no later ones? Everything before the
+current step is an axiom or a tautology or was reached from them by implication arrows; going beyond the current
+step would amount to using equivalence arrows (``and later I show\dots''), and apart from circularity it is the
+directedness of the implication that allows exactly the previous steps \ts{1}{1}{1:11:21}\ts{1}{1}{1:11:41}.
+
+\begin{remark}[Notation]
+If $p$ can be proven from the axiomatic system $a_1,\dots,a_N$, one writes $a_1,\dots,a_N\vdash p$ (``proves
+$p$'') \ts{1}{1}{1:12:23}.
+\end{remark}
+
+\begin{remark}[Recognising versus finding]
+The definition makes it easy to \emph{recognise} a proof: a computer can check whether a given sequence is a proof
+of $p$ \ts{1}{1}{1:13:05}\ts{1}{1}{1:13:28}. \emph{Finding} a proof is an altogether different matter: even for set
+problems, which can be solved, it is not easy, and sometimes it is so hard that whoever finds a proof first
+becomes a celebrated mathematician \ts{1}{1}{1:13:49}. The theory of proofs gives no hint on how to prove things;
+it tells you whether what you have written is a proof, which can be very useful \ts{1}{1}{1:14:30}.
+\end{remark}
+
+\begin{remark}[Tautologies are redundant axioms]\label{rem:lo-tautax}
+A tautology among the axioms can be removed from the list without impairing the power of the axiomatic system:
+the same propositions can still be proven, because the tautology can be pulled into any proof by (T)
+\ts{1}{1}{1:14:56}\ts{1}{1}{1:15:41}. The extreme case: the axiomatic system of \emph{propositional logic} is the
+\emph{empty sequence}, since everything one wants to show there is a tautology \ts{1}{1}{1:16:22}\ts{1}{1}{1:16:46}.
+\end{remark}
+
+\begin{definition}[New concepts: consistency]\label{def:lo-consistent}
+An axiomatic system $a_1,\dots,a_N$ is \textbf{consistent} if there exists a proposition $q$ that cannot be proven
+from it \ts{1}{1}{1:17:34}\ts{1}{1}{1:17:57}:
+\[
+  \exists q\colon\ \neg\,(a_1,\dots,a_N\vdash q).
+\]
+\end{definition}
+
+The idea behind this maybe surprising definition \ts{1}{1}{1:18:40}: consider an axiomatic system containing
+contradictory propositions, say $s$ and, later in the list, $\neg s$ \ts{1}{1}{1:19:28}\ts{1}{1}{1:19:54}. By (A) both
+$s$ and $\neg s$ can be pulled into a proof; then by (M), for an arbitrary $q$, it suffices that
+$(s\wedge\neg s)\Rightarrow q$ is true \ts{1}{1}{1:20:20}. It is a tautology: $s\wedge\neg s$ is always false, and by
+the definition of the implication arrow, ex falso quodlibet, the whole statement is always true
+\ts{1}{1}{1:21:02}\ts{1}{1}{1:21:23}. So any statement $q$ can be proven, and also $\neg q$ \ts{1}{1}{1:21:44}. Not being
+able to prove every statement is a sign of not having contradictory axioms; hence the definition excludes exactly
+this \ts{1}{1}{1:22:05}.
+
+\begin{theorem}\label{thm:lo-propconsistent}
+Propositional logic is consistent \ts{1}{1}{1:22:45}.
+\end{theorem}
+\begin{proof}
+It suffices to exhibit a proposition that cannot be proven within propositional logic \ts{1}{1}{1:23:11}. Its
+axiomatic system is the empty sequence (\cref{rem:lo-tautax}), so only (T) and (M) can be used in a proof
+\ts{1}{1}{1:23:56}. The only way to introduce a new step is to write down a tautology, and (M) only allows, from
+previous tautologies, a $q_j$ for which the whole implication is a tautology; so only tautologies can be proven
+\ts{1}{1}{1:24:17}\ts{1}{1}{1:24:43}. But $q\wedge\neg q$ is not a tautology, so it cannot be proven
+\ts{1}{1}{1:25:03}. Hence propositional logic is consistent \ts{1}{1}{1:25:26}.
+\end{proof}
+This is really trivial \ts{1}{1}{1:25:46}. The important remark is that while it is perfectly clear how to
+\emph{define} consistency, it is perfectly difficult to \emph{prove} it for a given axiomatic system, propositional
+logic being a big exception. For a more powerful system, like the axioms of set theory, it is very difficult; and
+famous results, first obtained by G\"odel, say that under certain circumstances it is not even possible
+\ts{1}{1}{1:26:07}\ts{1}{1}{1:26:27}. Only a rough taste of one of them \ts{1}{1}{1:26:48}:
+
+\begin{theorem}[G\"odel, roughly and non-technically]\label{thm:lo-goedel}
+Any axiomatic system that is powerful enough to encode the elementary arithmetic of the natural numbers is either
+inconsistent or contains a proposition that can be neither proven nor disproven \ts{1}{1}{1:27:09}\ts{1}{1}{1:28:19}.
+\end{theorem}
+``Elementary arithmetic'' is imprecise language: roughly elementary-school mathematics (prime numbers, products);
+what exactly is needed one sees from the proof \ts{1}{1}{1:27:57}. Variants of the formulation say that the
+system contains true statements that cannot be proven \ts{1}{1}{1:29:10}.
+
+\begin{history}[G\"odel's incompleteness theorems]
+This sent shockwaves through the mathematical world \ts{1}{1}{1:29:10}: in mathematics, of all the arts, the notion
+of truth had seemed clear: something was true if it could be proven from a system of assumptions
+\ts{1}{1}{1:29:32}. Then G\"odel came along and, ironically, \emph{proved} this and variants of it
+\ts{1}{1}{1:29:52}.\par
+\smallskip
+\emph{References.} K.~G\"odel, ``\"Uber formal unentscheidbare S\"atze der Principia Mathematica und verwandter
+Systeme I'', \emph{Monatshefte f\"ur Mathematik und Physik} 38 (1931) 173--198 (the first and second
+incompleteness theorems; announced at K\"onigsberg in September 1930).
+\end{history}
+
+\begin{secondary}[The idea of G\"odel's proof]
+The proof is involved; its basic idea is the following \ts{1}{1}{1:29:52}.
+\begin{enumerate}
+  \item Assign to each mathematical, and also \emph{meta}-mathematical, statement a number, now called its
+        \textbf{G\"odel number} \ts{1}{1}{1:30:15}. In a mathematical statement such as $a^2+b^2=c^2$, or one with
+        quantifiers, roughly the plus sign gets a number, the exponent gets one, every variable a different one,
+        the equal sign another \ts{1}{1}{1:31:04}. One can then talk \emph{about} the equation: ``the left-hand
+        side has more symbols than the right-hand side'' is a meta-mathematical statement, and G\"odel showed how
+        to assign a number even to such statements \ts{1}{1}{1:31:24}\ts{1}{1}{1:31:44}.
+  \item The construction: every elementary symbol is assigned a prime; one takes powers of primes and multiplies
+        them, getting big numbers, huge ones for meta-mathematical statements \ts{1}{1}{1:32:07}. Since numbers are
+        multiplied, elementary arithmetic is needed: this explains the mysterious condition on the axiomatic
+        system \ts{1}{1}{1:32:29}.
+  \item Then a barber-type argument (``the barber shaves all people in his village who do not shave themselves'')
+        identifies a proposition that is neither provable nor disprovable \ts{1}{1}{1:32:50}\ts{1}{1}{1:33:14}.
+\end{enumerate}
+The construction is reflexive, like Cantor's proof that there are uncountably many real numbers
+\ts{1}{1}{1:34:08}: one assumes that every number written as an integer, a decimal point and decimal places
+$d_1d_2d_3\dots$ can be listed, and uses the numbering to construct a new real number that is not in the list
+\ts{1}{1}{1:34:29}. In G\"odel's proof one assigns G\"odel numbers to statements and produces a statement that uses
+the G\"odel number of the very same statement, which leads to the contradiction \ts{1}{1}{1:34:49}.
+\end{secondary}
+
+With the definitions of this lecture (axiomatic system, provable, hence disprovable: the negation can be proven,
+and consistent) the \emph{statement} of the theorem is fully understood; the proof is a different matter
+\ts{1}{1}{1:35:10}.
+
+% ==================================================================
+\section{Outlook: axiomatic set theory}\label{sec:lo-outlook}
+
+This completes the language in which axiomatic set theory will be defined, starting next time
+\ts{1}{1}{1:35:30}.
+\begin{itemize}
+  \item The \textbf{element symbol} $\in$ is nothing but a predicate of two variables, written in the middle
+        ($x\in y$ instead of ${\in}(x,y)$) to save two brackets and a comma, as is often done for predicates of
+        two variables \ts{1}{1}{1:35:51}\ts{1}{1}{1:36:11}.
+  \item It is the \emph{only} elementary predicate of set theory: even the equality of sets will be defined in
+        terms of it \ts{1}{1}{1:36:32}. Nobody will explain what it means that $x$ is an element of $y$; and both
+        $x$ and $y$ will be sets: there is no hierarchy of ``grown-up sets'' and mere elements, sets can be
+        contained in sets \ts{1}{1}{1:36:53}.
+  \item A priori there is no reason to exclude a set being an element of itself \ts{1}{1}{1:37:13}. If one
+        restricts to the sets that do not contain themselves, one proves in two lines that the collection of
+        all such sets is not a set: asking whether it contains itself, both answers lead to a contradiction
+        \ts{1}{1}{1:37:34}\ts{1}{1}{1:37:54}. So na\"ive set theory is tricky, and axioms are needed to regulate the
+        use of the element predicate, a kind of \emph{operational} definition \ts{1}{1}{1:38:15}.
+  \item Some axioms say that certain sets exist: an empty set; for a given set, its power set, the set of all its
+        subsets \ts{1}{1}{1:38:35}. In fact the only set one really needs to postulate is the empty set: every set
+        is ultimately constructed from it (the set containing the empty set, and so on) \ts{1}{1}{1:38:56}.
+  \item There are about nine axioms (the number varies with how they are written) that reproduce the set theory
+        on which all of modern mathematics is built \ts{1}{1}{1:39:16}.
+  \item One of them is the \textbf{axiom of choice} (Zorn's lemma is an equivalent form). Why be so picky? Without
+        it one cannot prove that every vector space has a basis, which is used very often
+        \ts{1}{1}{1:39:16}\ts{1}{1}{1:39:37}.
+\end{itemize}
+Already at the bottom of the building there are screws that must be justified for the whole building to stand as
+we want; the purpose of this lecture and the next is to look at the foundations and to have a justifiably good
+feeling about the constructions to come \ts{1}{1}{1:39:58}\ts{1}{1}{1:40:18}.
+
+\begin{coursenote}[Names used]
+The paradox in the third point is Russell's paradox (B.~Russell, 1901; letter to Frege, 1902); the axioms are those
+of Zermelo--Fraenkel set theory with choice (ZFC); both names come in the next lecture.
+\end{coursenote}
+
+% ==================================================================
+\section*{Key concepts}
+\begin{keyconcepts}
+\textbf{Retrieval questions.}
+\begin{enumerate}
+  \item Why is $(F\Rightarrow F)$ true, and which theorem justifies this definition?
+  \item How many unary and binary operators are there, and from which single operator can all be built?
+  \item Define $\exists$ in terms of $\forall$. Why does the order of quantifiers matter?
+  \item State the three rules (A), (T), (M) for a step of a proof.
+  \item What does it mean for an axiomatic system to be consistent, and why does a contradiction among the axioms
+        destroy it?
+  \item Why is propositional logic consistent? What does G\"odel's theorem say?
+\end{enumerate}
+\textbf{Concepts.}
+\begin{itemize}
+  \item Proposition: a variable taking the values true or false (\cref{def:lo-proposition}).
+  \item Implication: $p\Rightarrow q$ false only for $p$ true, $q$ false; ex falso quodlibet (\cref{def:lo-exfalso}).
+  \item Contraposition: $(p\Rightarrow q)\Leftrightarrow(\neg q\Rightarrow\neg p)$; proof by contradiction
+        (\cref{thm:lo-contra}, \cref{cor:lo-contradiction}).
+  \item NAND: $p\uparrow q:\Leftrightarrow\neg(p\wedge q)$ generates all operators (\cref{rem:lo-nand}).
+  \item Predicate; $\forall x\colon P(x)$; $\exists x\colon P(x):\Leftrightarrow\neg\forall x\colon\neg P(x)$
+        (\cref{def:lo-forall,def:lo-exists}); bound and free variables.
+  \item Axiomatic system, proof by (A), (T), (M), $a_1,\dots,a_N\vdash p$ (\cref{def:lo-axsys,def:lo-proof}).
+  \item Consistency: $\exists q\colon\neg(a_1,\dots,a_N\vdash q)$ (\cref{def:lo-consistent}); propositional logic is
+        consistent (\cref{thm:lo-propconsistent}); G\"odel (\cref{thm:lo-goedel}).
+\end{itemize}
+\end{keyconcepts}
+
+\flushside
+\end{paracol}
