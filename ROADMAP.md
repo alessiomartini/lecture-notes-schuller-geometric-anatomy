@@ -8,7 +8,7 @@
 ## Lezioni
 - [x] L01 Introduction; logic of propositions and predicates
 - [x] L02 Axioms of set theory
-- [ ] L03 Classification of sets
+- [x] L03 Classification of sets
 - [ ] L04 Topological spaces: construction and purpose
 - [ ] L05 Topological spaces: some heavily used invariants
 - [ ] L06 Topological manifolds and manifold bundles
@@ -41,5 +41,5 @@
 - Lezione 2 non ha sottotitoli YouTube: whisper locale. large-v3 su CPU va a ~0,25x tempo reale (~7 h a lezione), la GPU MX150 (2 GB) non regge large-v3: scelto distil-large-v3 su CPU (~velocità reale; la GPU non ha cuBLAS/memoria).
 
 ## Log
-- 2026-11-22: capitolo 2 (assiomi ZFC, prova formale dell'unicità del vuoto); trascrizioni di tutte le 28 lezioni pronte
+- 2026-11-22: capitolo 3 (classificazione degli insiemi: mappe, isomorfismo, relazioni di equivalenza, insiemi quoziente, costruzione di N, Z, Q); capitolo 2 (assiomi ZFC, prova formale dell'unicità del vuoto); trascrizioni di tutte le 28 lezioni pronte
 - 2026-11-21: repo creato, capitolo 1 scritto e compilato (pilota)

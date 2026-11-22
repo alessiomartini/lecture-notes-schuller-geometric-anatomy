@@ -16,5 +16,22 @@ NAND operator $\uparrow$. Start with $\neg p$, then $p\wedge q$, $p\vee q$, $p\R
 $p\Leftrightarrow q$; then argue that every operator of any order $n$ can be built from these.
 \end{exercise}
 
+% ------------------------------------------------------------------
+\section{Classification of sets (\cref{ch:l03})}\label{exam:ch03}
+
+\begin{exercise}[Well-definedness of the addition on $\mathbb Z$]\label{ex:cl-wd-Z}
+On $\N\times\N$ let $(m,n)\sim(p,q):\Leftrightarrow m+q=p+n$. Show that $\sim$ is an equivalence relation (transitivity
+included) and that $[(m,n)]+_{\mathbb Z}[(p,q)]:=[(m+p,\,n+q)]$ does not depend on the chosen representatives. Check that
+$[(0,0)]$ is neutral and that $[(n,0)]+_{\mathbb Z}[(0,n)]=[(0,0)]$ for every $n\in\N$. Define a multiplication on $\mathbb Z$ by
+inheriting the one of $\N$, and show that it is well defined (see \cref{def:cl-Z,def:cl-addZ}).
+\end{exercise}
+
+\begin{exercise}[The rational numbers and the fool's addition]\label{ex:cl-wd-Q}
+On $\mathbb Z\times\mathbb Z^*$ let $(x,y)\sim(u,v):\Leftrightarrow xv=uy$. Show that $\sim$ is an equivalence relation, and that
+$[(x,y)]+_\Q[(u,v)]:=[(xv+yu,\,yv)]$ and $[(x,y)]\cdot_\Q[(u,v)]:=[(xu,\,yv)]$ are well defined (note that $yv\ne0$). Show that
+$[(x,y)]\,\tilde+\,[(u,v)]:=[(x+u,\,y+v)]$ is \emph{not} well defined by finding representatives that give different results
+(see \cref{def:cl-Q,def:cl-opsQ,rem:cl-fool}). Show that $x\mapsto[(x,1)]$ is injective and compatible with the operations.
+\end{exercise}
+
 \flushside
 \end{paracol}
