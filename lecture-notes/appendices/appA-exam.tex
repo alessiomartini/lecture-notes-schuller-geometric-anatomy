@@ -98,5 +98,22 @@ an arbitrary $(\omega_1,\dots,\omega_p,v_1,\dots,v_q)$ expanded in the bases (\c
 quantity picking up the opposite factor), as announced at the end of the lecture. Check also, from \cref{def:te-det}, that $\det(\phi\circ\psi)=\det\phi\,\det\psi$ (\cref{prop:te-detwd,prop:te-detg}).
 \end{exercise}
 
+\section{Differential structures: tangent vector spaces (\cref{ch:l09})}\label{exam:ch09}
+
+\begin{exercise}[Change of components under a change of chart, with polar coordinates]\label{ex:tv-change-full}
+Let $(U,x)$ and $(V,y)$ be charts of a smooth manifold around $p$. (a) Show that $\partial/\partial y^a|_p=\bigl(\partial x^b/\partial y^a\bigr)(y(p))\,\partial/\partial x^b|_p$, where $\partial x^b/\partial y^a:=\partial_a(x^b\circ y^{-1})$, by letting both sides act on $f\in C^\infty(M)$ and using
+$f\circ y^{-1}=(f\circ x^{-1})\circ(x\circ y^{-1})$. (b) Deduce how the components $X^a$ of $X\in T_pM$ transform and that the transformation matrices are mutually inverse. (c) For $M=\R^2\setminus\{\text{a half line}\}$ with $x=(\text{Cartesian})$, $y=(r,\varphi)$, write
+$\partial/\partial r$ and $\partial/\partial\varphi$ in terms of $\partial/\partial x^1,\partial/\partial x^2$ and compare with the position vector $(x^1,x^2)$: does it transform like the components of a vector? (\cref{ex:tv-change,int:tv-position}.)
+\end{exercise}
+
+\section{Construction of the tangent bundle (\cref{ch:l10})}\label{exam:ch10}
+
+\begin{exercise}[The induced charts of $TM$ are $C^\infty$ compatible]\label{ex:tb-compat-full}
+\emph{Left to the problem sheet in the lecture; the computation below is not given in class.} Let $(U,x)$, $(\tilde U,\tilde x)$ be charts of the smooth atlas of $M$ and $\xi,\tilde\xi$ the charts of $TM$ they induce (\cref{def:tb-chart}). (a) Show that $\pi^{-1}(U)\cap\pi^{-1}(\tilde U)=\pi^{-1}(U\cap\tilde U)$ and that $\xi$ maps it to
+$x(U\cap\tilde U)\times\R^{\dim M}$, an open set. (b) Using \cref{ex:tv-change}, show that
+$\tilde\xi\circ\xi^{-1}(a,v)=\bigl(\tilde x\circ x^{-1}(a),\ \partial_b(\tilde x^c\circ x^{-1})(a)\,v^b\bigr)$ for $a\in x(U\cap\tilde U)$, $v\in\R^{\dim M}$, and conclude that it is $C^\infty$, with inverse of the same form, since $\tilde x\circ x^{-1}$ is. (c) Deduce that $\pi$ is smooth (in the charts it is the projection $(a,v)\mapsto a$) and that
+the atlas is a smooth atlas of dimension $2\dim M$ (\cref{def:df-ck}). The topology is the initial topology of $\pi$ (\cref{sec:tb-bundle}); check that the chart maps are homeomorphisms onto their images [?: the lecture only says ``that's quite simple''].
+\end{exercise}
+
 \flushside
 \end{paracol}
