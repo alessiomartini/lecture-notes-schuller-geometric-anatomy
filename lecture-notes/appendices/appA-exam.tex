@@ -80,5 +80,23 @@ of a chart $(U,x)$ for which there is a chart $(V,y)$ of $N$ with $\phi(U)\subse
 (\cref{ex:mf-cont-charts}).
 \end{exercise}
 
+% ------------------------------------------------------------------
+\section{Tensor space theory I: over a field (\cref{ch:l08})}\label{exam:ch08}
+
+\begin{exercise}[The canonical isomorphism $V\to V^{**}$]\label{ex:te-dd-full}
+Let $V$ be a finite dimensional $K$-vector space. For $v\in V$ define $\hat v\colon V^*\to K$ by $\hat v(\omega):=\omega(v)$. Show that $\hat v\in V^{**}$, that $v\mapsto\hat v$ is linear and that it is an isomorphism of vector spaces, without choosing a basis in the definition of the map (a basis may be used to prove
+injectivity and the dimension count). Where does finite dimensionality enter? (\cref{thm:te-dd,ex:te-dd,int:te-10}.)
+\end{exercise}
+
+\begin{exercise}[Reconstruction of a tensor]\label{ex:te-recon-full}
+Let $e_a$ be a basis of $V$, $\varepsilon^a$ the dual basis and $T\in T^p_qV$ with components $T^{a_1\dots a_p}{}_{b_1\dots b_q}$. Show that $T=T^{a_1\dots a_p}{}_{b_1\dots b_q}\,e_{a_1}\otimes\dots\otimes e_{a_p}\otimes\varepsilon^{b_1}\otimes\dots\otimes\varepsilon^{b_q}$ by evaluating both sides on
+an arbitrary $(\omega_1,\dots,\omega_p,v_1,\dots,v_q)$ expanded in the bases (\cref{thm:te-recon,ex:te-recon}).
+\end{exercise}
+
+\begin{exercise}[The determinant of a bilinear form]\label{ex:te-detg-full}
+\emph{Statement not in the lecture} [?: the problem sheet is not available]. Following \cref{prop:te-detg}: show how the components of a $(0,2)$ tensor transform under a change of basis, that the witchcraft determinant of its array picks up the factor $(\det A)^2$, and find a basis-independent combination (for example a ratio with a
+quantity picking up the opposite factor), as announced at the end of the lecture. Check also, from \cref{def:te-det}, that $\det(\phi\circ\psi)=\det\phi\,\det\psi$ (\cref{prop:te-detwd,prop:te-detg}).
+\end{exercise}
+
 \flushside
 \end{paracol}
