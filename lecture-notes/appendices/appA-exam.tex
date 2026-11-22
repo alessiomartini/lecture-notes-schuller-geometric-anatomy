@@ -115,5 +115,27 @@ $\tilde\xi\circ\xi^{-1}(a,v)=\bigl(\tilde x\circ x^{-1}(a),\ \partial_b(\tilde x
 the atlas is a smooth atlas of dimension $2\dim M$ (\cref{def:df-ck}). The topology is the initial topology of $\pi$ (\cref{sec:tb-bundle}); check that the chart maps are homeomorphisms onto their images [?: the lecture only says ``that's quite simple''].
 \end{exercise}
 
+\section{Grassmann algebra and de Rham cohomology (\cref{ch:l12})}\label{exam:ch12}
+
+\emph{The problem sheet of the lecture is not available; the statements below are those announced in class, worked out here [?: not verbatim].}
+
+\begin{exercise}[Pull-back, wedge and exterior derivative]\label{ex:gr-pullback-full}
+Let $h\colon M\to N$ be smooth, $\omega\in\Omega^n(N)$, $\sigma\in\Omega^m(N)$. (a) Show $h^*(\omega\wedge\sigma)=h^*\omega\wedge h^*\sigma$ from \cref{def:gr-wedge,def:gr-pullback}, working at a point (permutations of the entries commute with the linear maps $h_*$). (b) Show $h^*(\mathrm d\omega)=\mathrm d(h^*\omega)$ in a chart: for $n=0$ it is the chain rule
+$h^*(\mathrm df)=\mathrm d(f\circ h)$; deduce the general case from (a) and the local expression of $\mathrm d$ (\cref{thm:gr-pullback-d,prop:gr-pullback-wedge}).
+\end{exercise}
+
+\begin{exercise}[The graded Leibniz rule]\label{ex:gr-leibniz-full}
+Prove $\mathrm d(\omega\wedge\varphi)=\mathrm d\omega\wedge\varphi+(-1)^n\omega\wedge\mathrm d\varphi$ for $\omega\in\Omega^n(M)$, $\varphi\in\Omega^m(M)$: in a chart, with $\omega=\tfrac1{n!}\omega_{a_1\dots a_n}\mathrm dx^{a_1}\wedge\dots\wedge\mathrm dx^{a_n}$ and the Leibniz rule for the component functions, moving $\mathrm dx^b$ past the $n$ one-forms of $\omega$ (\cref{thm:gr-leibniz,thm:gr-commute}).
+\end{exercise}
+
+\begin{exercise}[Components of $\mathrm d$, and the Maxwell equations]\label{ex:gr-maxwell-full}
+(a) Show that $\mathrm d\omega=\tfrac1{n!}\partial_b\omega_{a_1\dots a_n}\,\mathrm dx^b\wedge\mathrm dx^{a_1}\wedge\dots\wedge\mathrm dx^{a_n}$ follows from \cref{def:gr-d} (compute both sides on $\partial_{b},\partial_{a_1},\dots,\partial_{a_n}$, for which all commutators vanish). (b) Writing $F=\tfrac12F_{\mu\nu}\mathrm dx^\mu\wedge\mathrm dx^\nu$ on a four-manifold with $F_{0i}=E_i$, $F_{ij}=-\varepsilon_{ijk}B_k$ (one sign convention; $x^0=t$, units with $c=1$), show that $\mathrm dF=0$ contains
+$\operatorname{div}\vec B=0$ and $\operatorname{curl}\vec E+\partial_t\vec B=0$ (\cref{ex:gr-maxwell}).
+\end{exercise}
+
+\begin{exercise}[$H^0$ and the connected components]\label{ex:gr-h0-full}
+Show $H^0(M)\cong\R^{\#}$, $\#$ the number of connected components of $M$ (\cref{ex:gr-h0,ex:gr-h0-ex}): the key steps are that a smooth function with $\mathrm df=0$ is locally constant, that connected components of a manifold are open, and that a locally constant function is constant on each component.
+\end{exercise}
+
 \flushside
 \end{paracol}
