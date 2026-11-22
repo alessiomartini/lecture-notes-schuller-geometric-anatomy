@@ -33,5 +33,52 @@ $[(x,y)]\,\tilde+\,[(u,v)]:=[(x+u,\,y+v)]$ is \emph{not} well defined by finding
 (see \cref{def:cl-Q,def:cl-opsQ,rem:cl-fool}). Show that $x\mapsto[(x,1)]$ is injective and compatible with the operations.
 \end{exercise}
 
+% ------------------------------------------------------------------
+\section{Topological spaces: construction and purpose (\cref{ch:l04})}\label{exam:ch04}
+
+\begin{exercise}[The topology inherited by a quotient set]\label{ex:to-quotient-full}
+Let $(M,\mathcal O)$ be a topological space and $\sim$ an equivalence relation on $M$ (see \cref{def:cl-equiv,def:cl-quotient}). Define on the
+quotient set $M/{\sim}$ a topology inherited from $\mathcal O$ (the problem-sheet exercise of the lecture does not give the definition: it
+asks to find it), and show that it is a topology. Apply it to $M=\R$ with the standard topology and $x\sim y:\Leftrightarrow y-x\in2\pi\mathbb Z$, the
+circle as a quotient set (see \cref{ex:to-quotient}).
+\end{exercise}
+
+% ------------------------------------------------------------------
+\section{Topological spaces: some heavily used invariants (\cref{ch:l05})}\label{exam:ch05}
+
+\begin{exercise}[Limits in Hausdorff spaces and the Zariski topology]\label{ex:iv-limit-full}
+Prove that in a Hausdorff space every convergent sequence has a unique limit point (\cref{thm:iv-limit}). Show that the chaotic topology on a set with at least two
+points is not $T_1$. Look up the Zariski topology and show that it is $T_1$ but not $T_2$ (\cref{ex:iv-zariski}).
+\end{exercise}
+
+\begin{exercise}[{$[0,1]$} is connected]\label{ex:iv-interval-full}
+Prove that $[0,1]$ with the topology induced from the standard topology of $\R$ is connected (\cref{thm:iv-interval}); not proved in class, ``a little work''.
+\end{exercise}
+
+\begin{exercise}[The fundamental group is a group]\label{ex:iv-group-full}
+Show that homotopy is an equivalence relation on curves with fixed end points (transitivity included), that $[\gamma]\bullet[\delta]:=[\gamma*\delta]$ is well defined
+(independent of the representatives), associative, has the class of the constant loop as neutral element and $[\gamma\circ(1-\cdot)]$ as inverse
+(\cref{def:iv-pi1,thm:iv-group,ex:iv-wd}).
+\end{exercise}
+
+% ------------------------------------------------------------------
+\section{Topological manifolds and manifold bundles (\cref{ch:l06})}\label{exam:ch06}
+
+\begin{exercise}[The Möbius strip is locally trivial but not trivial]\label{ex:mf-moebius-full}
+For the Möbius strip as a bundle over $S^1$ with fibre $[-1,1]$ (\cref{ex:mf-moebius}) find open sets $U\subseteq S^1$ over which the restricted bundle is isomorphic to a product bundle, so that it is locally trivial, and show that the bundle
+is not trivial (\cref{def:mf-trivial,ex:mf-cyl-moeb}). Write a section locally as a map $U\to[-1,1]$ (\cref{ex:mf-loctriv}).
+\end{exercise}
+
+\begin{exercise}[Pulled-back sections]\label{ex:mf-pullback-full}
+Let $(E,\pi,M)$ be a bundle with a section $\sigma$ and $f\colon M'\to M$ a map. Show that $\sigma'(m'):=(m',\sigma(f(m')))$ is a section of the pull-back bundle, that it is continuous if $f$ and $\sigma$ are, and that it is the only
+section $\sigma'$ with $u\circ\sigma'=\sigma\circ f$ (\cref{def:mf-pullback,prop:mf-pullback-section,ex:mf-pullback-sec}).
+\end{exercise}
+
+\begin{exercise}[Continuity of maps and curves through charts]\label{ex:mf-cont-charts-full}
+Let $M,N$ be topological manifolds and $\phi\colon M\to N$ a map. Show that if $\phi$ is continuous, then $y\circ\phi\circ x^{-1}$ is continuous for all charts $(U,x)$ of $M$ and $(V,y)$ of $N$ with $\phi(U)\subseteq V$; and conversely that $\phi$ is continuous if every point of $M$ lies in the domain
+of a chart $(U,x)$ for which there is a chart $(V,y)$ of $N$ with $\phi(U)\subseteq V$ and $y\circ\phi\circ x^{-1}$ continuous [?: the precise statement of the problem sheet is not in the lecture]. Deduce the criterion for a curve $\gamma\colon\R\to M$ of \cref{sec:mf-curve}
+(\cref{ex:mf-cont-charts}).
+\end{exercise}
+
 \flushside
 \end{paracol}
