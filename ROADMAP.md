@@ -12,7 +12,7 @@
 - [x] L04 Topological spaces: construction and purpose
 - [x] L05 Topological spaces: some heavily used invariants
 - [x] L06 Topological manifolds and manifold bundles
-- [ ] L07 Differentiable structures: definition and classification
+- [x] L07 Differentiable structures: definition and classification
 - [ ] L08 Tensor space theory I: over a field
 - [ ] L09 Differential structures: tangent vector spaces
 - [ ] L10 Construction of the tangent bundle
@@ -41,5 +41,5 @@
 - Lezione 2 non ha sottotitoli YouTube: whisper locale. large-v3 su CPU va a ~0,25x tempo reale (~7 h a lezione), la GPU MX150 (2 GB) non regge large-v3: scelto distil-large-v3 su CPU (~velocità reale; la GPU non ha cuBLAS/memoria).
 
 ## Log
-- 2026-11-22: capitoli 4-6 (spazi topologici: topologie, convergenza, continuità, omeomorfismi; invarianti: separazione, compattezza, paracompattezza, partizioni dell'unità, connessione, gruppo fondamentale; varietà topologiche, fibrati, atlanti; errori della lezione segnalati in coursenote: Heine-Borel in spazi metrici generici, seno di 1/x, striscia di Möbius contro cilindro); capitolo 3 (classificazione degli insiemi: mappe, isomorfismo, relazioni di equivalenza, insiemi quoziente, costruzione di N, Z, Q); capitolo 2 (assiomi ZFC, prova formale dell'unicità del vuoto); trascrizioni di tutte le 28 lezioni pronte
+- 2026-11-22: capitolo 7 (strutture differenziabili: atlanti C^k, teorema di Whitney, applicazioni tra varietà e buona definizione, diffeomorfismi, classificazione per dimensione; lapsus della lezione segnalati in coursenote); capitoli 4-6 (spazi topologici: topologie, convergenza, continuità, omeomorfismi; invarianti: separazione, compattezza, paracompattezza, partizioni dell'unità, connessione, gruppo fondamentale; varietà topologiche, fibrati, atlanti; errori della lezione segnalati in coursenote: Heine-Borel in spazi metrici generici, seno di 1/x, striscia di Möbius contro cilindro); capitolo 3 (classificazione degli insiemi: mappe, isomorfismo, relazioni di equivalenza, insiemi quoziente, costruzione di N, Z, Q); capitolo 2 (assiomi ZFC, prova formale dell'unicità del vuoto); trascrizioni di tutte le 28 lezioni pronte
 - 2026-11-21: repo creato, capitolo 1 scritto e compilato (pilota)
